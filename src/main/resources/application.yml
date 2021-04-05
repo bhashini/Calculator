@@ -1,0 +1,12 @@
+# Tomcat Server
+
+server:
+ port: 9001
+
+
+# Logger
+
+logging.level.com:
+  busyqa.course: DEBUG
+  org.hibernate.type: INFO
+

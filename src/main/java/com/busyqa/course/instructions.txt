@@ -1,0 +1,89 @@
+
+Instructions:
+>>>>>>>>>>>>>
+
+This is a small web application that implements a Quadratic Equation Calculator.
+
+This Calculator finds the solution of equations in the form:
+    ax² + bx + c = 0
+where x :
+    x = [ -b ± √ ( (b)² - 4(a)(c) ) ] / 2(a) 
+ 
+For this exercise we need to implement the logic described above (See the Step 4 below).
+
+Note.- This project has an html template that uses thymeleaf and requires NO modifications 
+unless you want to customize it. The only element that you need to modify in this
+project is the Controller. The modifications needed are detailed in the four steps 
+below. You can use the springboot-course-1-complete project that we completed in 
+class as a reference. 
+
+
+Make this modifications on the CalculatorController.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+1. Annotate the method "show()" with:
+      @GetMapping("/")
+      
+   Note.- The string "/" passed as a parameter to the @GetMapping annotation tells 
+   Spring MVC that this method will return the name of the main page of this web site.
+     
+2. Annotate the method "solve()" with:
+      @PostMapping("/{name_of_the_action}")
+   
+   The string "/{name_of_the_action}" passed as a parameter to the @PostMapping 
+   annotation has to be modified. The portion between curly braces "{name_of_the_action}" 
+   must be replaced with the name of the action used in the "calculator.html" file.
+   
+   Hint: Open the "calculator.html" file located inside the resources/templates 
+   folder and look for the "th:action" attribute of the form tag. Copy the value
+   associated to this attribute and replace the "{name_of_the_action}" indicated
+   above with it (including the curly braces).   
+
+3. The method "solve()" has three parameters annotated with @RequestParam. 
+   Replace the "{tag_?}" passed to the annotations with the proper value.
+   
+   The parameters are the following:
+   
+        @RequestParam("{tag_a}") double a,
+        @RequestParam("{tag_b}") double b,
+        @RequestParam("{tag_c}") double c
+
+   Hint: Go to the "calculator.html" file located inside the resources/templates 
+   folder and look for the "input type='text'" elements. You will find three of 
+   these input text elements. Each of these elements has an attribute "name". Copy 
+   the value associated to the "name" attribute and replace it's corresponding 
+   "{tag_?}" in the "solve()" method with it. Do the same process for the three 
+   elements. 
+   
+   For instance:
+   
+   You find this input text element in the html file. 
+         
+         <input type="text" name="param_a">
+         
+   Here you see that attribute "name" is equal to "param_a". So what you need to do
+   is to replace in the @RequestParam annotated parameter the 
+       
+        "{tag_a}" for "param_a" (Note that the curly braces are replaced as well)
+        
+   That way, your "solve()" method is going to be able to read the value of the 
+   input text element in the html template. Repeat this for the other 2 elements. 
+   
+4. The "solve()" method has to solve the following equation using the three
+   parameters detailed in the step above.
+
+   result_1 = [ -b + √ ( (b)² - 4(a)(c) ) ] / 2(a)  
+   
+   result_2 = [ -b - √ ( (b)² - 4(a)(c) ) ] / 2(a)  
+   
+   √ => square root operator.
+   
+   Hint: As this method solves quadratic equations, there will be two solutions.
+   Before performing any calculation, ensure that the expresion inside the 
+   square root is greater or equal to zero otherwise you will get an Exception.
+   So make sure that:
+        (b)² - 4(a)(c) >= 0
+   If the expression above is less than zero then assign 0 to both result variables.
+   
+   The Math library in java contains useful methods the would help you out with the 
+   calculations.

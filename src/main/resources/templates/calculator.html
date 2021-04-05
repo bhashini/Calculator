@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Calculator</title>
+  <link rel="stylesheet" th:href="@{/css/style_calculator.css}"/>
+</head>
+<body>
+  
+  <div class="container">
+      <img th:src="@{/img/quadratic.jpg}" alt="Quadratic Equation"/>
+      <form th:action="@{/solve}" method="post" >
+      
+          <label for="param_a">Operand a:</label>
+          <input type="number" name="param_a" required><br />
+          <label for="param_b">Operand b:</label>
+          <input type="number" name="param_b" required><br />
+          <label for="param_c">Operand c:</label>
+          <input type="number" name="param_c" required><br /><br />
+
+          <input type="submit" value="Solve" style="width: 100px;">
+      </form>
+  </div>
+  <h2 th:if="${!#strings.isEmpty(result1)}" th:text="'Result 1: ' + ${result1}"></h2>
+  <h2 th:if="${!#strings.isEmpty(result2)}" th:text="'Result 2: ' + ${result2}"></h2>
+</body>
+</html>
